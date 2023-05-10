@@ -58,12 +58,15 @@ func InvokeLambdas(payload LambdaInvoke, lambda string, output string) {
 // Execute a lambda function and return the response
 func invokeFunction(payload string, functionName string) (string, error) {
 	// Create a new session
-	sess, err := session.NewSession(&aws.Config{
-		Region: aws.String("us-east-1")},
-	)
+
+	sess := session.Must(session.NewSessionWithOptions(session.Options{
+		SharedConfigState: session.SharedConfigEnable,
+	}))
 
 	// Create a Lambda service client.
-	svc := lambda.New(sess)
+	svc := lambda.New(sess, &aws.Config{
+		Region: aws.String("us-east-1")},
+	)
 
 	// Create the input
 	input := &lambda.InvokeInput{
