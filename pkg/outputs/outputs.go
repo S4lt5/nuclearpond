@@ -12,9 +12,7 @@ import (
 
 // function for s3 output
 func S3Output(lambdaResponse interface{}) {
-	if lambdaResponse == nil {
-		log.Println("I got an invalid nil response. :(")
-	} else {
+	if lambdaResponse != nil {
 		if strings.Contains(lambdaResponse.(string), "No findings") {
 			log.Println("Scan completed with no findings")
 			return
