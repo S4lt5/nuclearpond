@@ -12,11 +12,13 @@ import (
 
 // function for s3 output
 func S3Output(lambdaResponse interface{}) {
-	if strings.Contains(lambdaResponse.(string), "No findings") {
-		log.Println("Scan completed with no findings")
-		return
+	if lambdaResponse != nil {
+		if strings.Contains(lambdaResponse.(string), "No findings") {
+			log.Println("Scan completed with no findings")
+			return
+		}
+		log.Println("Saved results in", lambdaResponse)
 	}
-	log.Println("Saved results in", lambdaResponse)
 }
 
 // function for cmd output
