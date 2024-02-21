@@ -53,6 +53,9 @@ var runCmd = &cobra.Command{
 			os.Exit(1)
 		}
 
+		// Encode the Nuclei arguments in base64 so it doesn't have to be done at command line
+		nucleiArgs := base64.StdEncoding.EncodeToString([]byte(nucleiArgs))
+
 		// Targets flag
 		if targets == "" && target == "" {
 			log.Fatal("Either a target or a list of targets is required")
