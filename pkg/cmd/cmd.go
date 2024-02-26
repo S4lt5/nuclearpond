@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"log"
 	"os"
-
+	"encoding/base64"
 	"github.com/DevSecOpsDocs/nuclearpond/pkg/core"
 	"github.com/DevSecOpsDocs/nuclearpond/pkg/helpers"
 	"github.com/DevSecOpsDocs/nuclearpond/pkg/server"
